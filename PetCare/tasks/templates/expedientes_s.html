@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+{% block content %} <!-- ver_expedientes.html -->
+
+<div class="main container bg-dark text-white">
+    <br>
+    <div class="table-responsive mx-auto">
+        <h3 class="card card-body text-center bg-dark text-white border-3 border-warning">Expedientes</h3>
+        <table class="table table-sm table-bordered table-dark text-white border border-warning border-3"
+        style="font-size: 0.8em">
+        <tr>
+          <th>ID</th>
+          <th>ID Mascota</th>
+          
+          <th>Edad</th>
+  
+          <th>Sexo</th>
+          <th>Raza</th>
+          <th>Color</th>
+  
+          <th>Historial</th>
+          <th>Cirugias</th>
+          <th>Tratamientos</th>
+          <th>Fecha_Ingreso</th>
+          <th>F Egreso</th>
+          <th>Diagnostico</th>
+          <th>Vacunas</th>
+          <th>Alergias</th>
+          <th>ID Personal</th>
+        </tr>
+        {% for expediente in expedientes %}
+        <tr>
+          <td>{{ expediente.ID_EXPEDIENTE }}</td>
+          <td>{{ expediente.ID_MASCOTA }} - {{ expediente.NOMBRE_MASCOTA }} </td>
+          <td>{{ expediente.EDAD }}</td>
+  
+          <td>{{ expediente.SEXO_MASCOTA }}</td>
+          <td>{{ expediente.RAZA_MASCOTA }}</td>
+          <td>{{ expediente.COLOR_MASCOTA }}</td>
+          
+          <td>{{ expediente.HISTORIAL_CLINICO }}</td>
+          <td>{{ expediente.CIRUGIAS }}</td>
+          <td>{{ expediente.TRATAMIENTOS }}</td>
+          <td>{{ expediente.FECHA_INGRESO }}</td>
+          <td>{{ expediente.FECHA_EGRESO }}</td>
+          <td>{{ expediente.DIAGNOSTICO }}</td>
+          <td>{{ expediente.ESQUEMA_VACUNACION }}</td>
+          <td>{{ expediente.ALERGIAS }}</td>
+          <td>{{ expediente.ID_PERSONAL }}</td>
+        </tr>
+        {% endfor %}
+      </table><br>
+
+
+        <h4 class="card card-body text-center bg-dark text-white col-md-12 mx-auto border border-warning border-3">
+            Ingresar Nuevo Expediente</h4>
+        <form method="POST" class="card card-body bg-dark text-white col-md-12 mx-auto border border-warning border-3">
+            {% csrf_token %}
+            <br>
+            <div class="row">
+                <div class="col">
+                    <p class="fw-bold fs-5">ID Mascota:</p>
+                    {{ form.ID_mascota }}
+                    {{ form.ID_mascota.errors }}
+                </div>
+                <div class="col">
+                    <p class="fw-bold fs-5">ID Personal:</p>
+                    {{ form.ID_personal }}
+                    {{ form.ID_personal.errors }}
+                </div>
+                <div class="col-md-2">
+                    <p class="fw-bold fs-5">Edad:</p>
+                    {{ form.Edad }}
+                    {{ form.Edad.errors }}
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col">
+                    <p class="fw-bold fs-5">Historial Clinico:</p>
+                    {{ form.Historial_clinico }}
+                    {{ form.Historial_clinico.errors }}
+                </div>
+                <div class="col">
+                    <p class="fw-bold fs-5">Cirugias:</p>
+                    {{ form.Cirugias }}
+                    {{ form.Cirugias.errors }}
+                </div>
+                <div class="col">
+                    <p class="fw-bold fs-5">Tratamientos:</p>
+                    {{ form.Tratamientos }}
+                    {{ form.Tratamientos.errors }}
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col">
+                    <p class="fw-bold fs-5">Fecha Ingreso:</p>
+                    {{ form.Fecha_ingreso }}
+                    {{ form.Fecha_ingreso.errors }}
+                </div>
+                <div class="col">
+                    <p class="fw-bold fs-5">Fecha Egreso:</p>
+                    {{ form.Fecha_egreso }}
+                    {{ form.Fecha_egreso.errors }}
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col">
+                    <p class="fw-bold fs-5">Diagnostico:</p>
+                    {{ form.Diagnostico }}
+                    {{ form.Diagnostico.errors }}
+                </div>
+                <div class="col">
+                    <p class="fw-bold fs-5">Esquema Vacunacion:</p>
+                    {{ form.Esquema_vacunacion }}
+                    {{ form.Esquema_vacunacion.errors }}
+                </div>
+                <div class="col">
+                    <p class="fw-bold fs-5">Alergias:</p>
+                    {{ form.Alergias }}
+                    {{ form.Alergias.errors }}
+                </div>
+            </div>
+            <br>
+            <button type="submit" class="btn btn-itp">Guardar</button>
+        </form>
+
+
+    </div>
+</div>
+{% endblock %}

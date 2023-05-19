@@ -1,0 +1,53 @@
+{% extends 'base.html '%}
+{% block content %}
+
+<div class="main container">
+    <div class="row mt-5">
+
+
+        <div class="col-md-7">
+            <form action="/tasks/create/" method="POST" class="card card-body">
+                <h1 class="text-center">Crear Tarea</h1>
+                {{error}}
+                {% csrf_token %}
+                {{form}}
+                <button class="btn btn-primary"> Guardar </button>
+            </form>
+        </div>
+
+
+    </div>
+
+    <div class="row mt-5">
+
+        <div class="col-md-6">
+            <h2>Tareas incompletas</h2>
+            <ul>
+                {% for task in incomplete_tasks %}
+                <li>{{ task.title }} , {{ task.description }} </li>
+                {% empty %}
+                <li>No hay tareas incompletas.</li>
+                {% endfor %}
+            </ul>
+
+        </div>
+
+        <div class="col-md-6">
+
+
+            <h2>Tareas completadas</h2>
+            <ul>
+                {% for task in completed_tasks %}
+
+                <li>{{ task.title }} , {{ task.description }} , ({{ task.datecompleted|date:"F d, Y" }})</li>
+                {% empty %}
+                <li>No hay tareas completadas.</li>
+                {% endfor %}
+            </ul>
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

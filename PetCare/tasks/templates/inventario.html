@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="main container bg-dark text-white">
+  <br>
+  <div class="table-responsive mx-auto">
+  <h3 class="card card-body text-center bg-dark text-white border-3 border-success">Inventario Django</h3>
+  <table class="table table-sm table-bordered table-dark border-secondary text-white border border-success border-3" style="font-size: 0.8em">
+    <thead>
+      <tr>
+          <th>ID Producto</th>
+          <th>Area</th>
+          <th>Nombre Producto</th>
+          <th>Caracteristicas</th>
+          <th>Precio Unitario</th>
+          <th>Cantidad Inventario</th>
+          <th>Fecha Caducidad</th>
+          <th>Productos Descuento</th>
+          <th>Marca Producto</th>
+          <th>Presentación</th>
+          <th>Fecha Compra</th>
+      </tr>
+  </thead>
+  <tbody>
+      {% for item in inventario %}
+      <tr>
+          <td>{{ item.ID_producto }}</td>
+          <td>{{ item.Area }}</td>
+          <td>{{ item.Nombre_producto }}</td>
+          <td>{{ item.Caracteristicas }}</td>
+          <td>{{ item.Precio_unitario }}</td>
+          <td>{{ item.Cantidad_inventario }}</td>
+          <td>{{ item.Fecha_caducidad }}</td>
+          <td>{{ item.Productos_descuento }}</td>
+          <td>{{ item.Marca_producto }}</td>
+          <td>{{ item.Presentacion }}</td>
+          <td>{{ item.Fecha_compra }}</td>
+      </tr>
+      {% endfor %}
+  </tbody>
+  </table>
+</div><br>
+
+  <h4 class="card card-body text-center bg-dark text-white col-md-12 mx-auto border border-success border-3">Agregar Producto</h4>
+  <form method="post" class="card card-body bg-dark text-white col-md-12 mx-auto border border-success border-3">
+    {% csrf_token %}
+    
+    <div class="row">
+      <div class="col">
+        <p class="fw-bold fs-5">Nombre Producto:</p>
+        {{ form.Nombre_producto }}
+        {{ form.Nombre_producto.errors }}
+      </div>
+      <div class="col-md-5">
+      </div>
+    </div>
+    <br>
+
+    <div class="row">
+      
+
+      <div class="col">
+        <p class="fw-bold fs-5">Precio Unitario:</p>
+        {{ form.Precio_unitario }}
+        {{ form.Precio_unitario.errors }}
+        <p class="fw-bold fs-5">Cantidad Inventario:</p>
+        {{ form.Cantidad_inventario }}
+        {{ form.Cantidad_inventario.errors }}
+        <p class="fw-bold fs-5">Fecha Caducidad:</p>
+        {{ form.Fecha_caducidad }}
+        {{ form.Fecha_caducidad.errors }}
+      </div>
+
+      <div class="col">
+        <p class="fw-bold fs-5">Productos Descuento:</p>
+        {{ form.Productos_descuento }}
+        {{ form.Productos_descuento.errors }}
+        <p class="fw-bold fs-5">Marca:</p>
+        {{ form.Marca_producto }}
+        {{ form.Marca_producto.errors }}
+        
+        <p class="fw-bold fs-5">Fecha Compra:</p>
+        {{ form.Fecha_compra }}
+        {{ form.Fecha_compra.errors }}
+      </div>
+      <div class="col-md-5">
+        <p class="fw-bold fs-5">Area:</p>
+        {{ form.Area }}
+        {{ form.Area.errors }}
+        
+        <p class="fw-bold fs-5">Presentacion:</p>
+        {{ form.Presentacion }}
+        {{ form.Presentacion.errors }}
+        <p class="fw-bold fs-5">Caracteristicas:</p>
+        {{ form.Caracteristicas }}
+        {{ form.Caracteristicas.errors }}
+      </div>
+
+    </div>
+    <br>
+    <button type="submit" class="btn btn-success">Guardar</button>
+  </form>
+
+</div>
+{% endblock %}

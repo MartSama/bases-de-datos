@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="main container">
+    <div class="row mt-5">
+
+        <div class="col-md-5">
+            <form action="{% url 'create_pet' %}" method="POST" class="card card-body">
+                <h2 class="text-center">Agregar Mascota</h2>
+                <br>
+                {{error}}
+                {% csrf_token %}
+                {{form}}
+                <br>
+                <button class="btn btn-primary">Guardar</button>
+            </form>
+        </div>
+
+        <div class="col-md-7">
+            <div class="col-md-7">
+                <h2 class="text-center">Mascotas</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Species</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for pet in pets %}
+                        <tr>
+                            <td>{{ pet.name }}</td>
+                            <td>{{ pet.species }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-md-12">
+                <h2 class="text-center">Tus Mascotas</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Age</th>
+                            <th>Sex</th>
+                            <th>Breed</th>
+                            <th>Color</th>
+                            <th>Owner Name</th>
+                            <th>Owner Phone</th>
+                            <th>Owner Address</th>
+                            <th>Medical History</th>
+                            <th>Surgeries</th>
+                            <th>Treatments</th>
+                            <th>Release Dates</th>
+                            <th>Diagnosis</th>
+                            <th>Vaccination Schedule</th>
+                            <th>Allergies</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for pet in pets %}
+                        <tr>
+                            <td>{{ pet.nombre }}</td>
+                            <td>{{ pet.edad }}</td>
+                            <td>{{ pet.sexo }}</td>
+                            <td>{{ pet.raza }}</td>
+                            <td>{{ pet.color }}</td>
+                            <td>{{ pet.nombre_propietario }}</td>
+                            <td>{{ pet.telefono_propietario }}</td>
+                            <td>{{ pet.direccion_propietario }}</td>
+                            <td>{{ pet.historial }}</td>
+                            <td>{{ pet.cirugias }}</td>
+                            <td>{{ pet.tratamientos }}</td>
+                            <td>{{ pet.fechas_egreso }}</td>
+                            <td>{{ pet.diagnostico }}</td>
+                            <td>{{ pet.esquema_vacunas }}</td>
+                            <td>{{ pet.alergias }}</td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="15">No tienes mascotas aún.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                <h2>Agregar Mascota</h2>
+                <form method="post" class="card card-body">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-primary">Agregar Mascota</button>
+                </form>
+
+                {% if error %}
+                <p>{{ error }}</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

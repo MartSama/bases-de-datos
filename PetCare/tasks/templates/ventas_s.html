@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="main container bg-dark text-white">
+  <br>
+  <div class="table-responsive mx-auto">
+  <h3 class="card card-body text-center bg-dark text-white border-3 border-warning">Ventas</h3>
+  <table class="table table-sm table-bordered table-dark border-secondary text-white border border-warning border-3" style="font-size: 0.8em">
+    <thead>
+      <tr>
+          <th>ID Venta</th>
+          <th>Nombre del Producto</th>
+          <th>ID Personal</th>
+          <th>Cantidad Vendida</th>
+          <th>Total</th>
+          <th>Fecha de Venta</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for item in ventas %}
+        <tr>
+            <td>{{ item.ID_VENTA }}</td>
+            <td>{{ item.NOMBRE_PRODUCTO }}</td>
+            <td>{{ item.ID_PERSONAL }}</td>
+            <td>{{ item.CANTIDAD_VENDIDA }}</td>
+            <td>{{ item.TOTAL }}</td>
+            <td>{{ item.FECHA_VENTA }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table><br>
+
+</div>
+
+  <h4 class="card card-body text-center bg-dark text-white col-md-12 mx-auto border border-warning border-3">Agregar Venta</h4>
+  <form method="post" class="card card-body bg-dark text-white col-md-12 mx-auto border border-warning border-3">
+    {% csrf_token %}
+    
+    <div class="row">
+      <div class="col-md-5">
+        <p class="fw-bold fs-5">Producto:</p>
+        {{ form.ID_producto }}
+        {{ form.ID_producto.errors }}
+    </div>
+      <div class="col-md-2">
+          <p class="fw-bold fs-5">Cant:</p>
+          {{ form.Cantidad_vendida }}
+          {{ form.Cantidad_vendida.errors }}
+      </div>
+      <div class="col-md-2">
+          <p class="fw-bold fs-5">Fecha:</p>
+          {{ form.Fecha_venta }}
+          {{ form.Fecha_venta.errors }}
+      </div>
+      <div class="col">
+        <p class="fw-bold fs-5">ID Personal:</p>
+        {{ form.ID_personal }}
+        {{ form.ID_personal.errors }}
+    </div>
+  </div>
+  <br>
+
+    <button type="submit" class="btn btn-itp">Guardar</button>
+  </form>
+
+</div>
+{% endblock %}

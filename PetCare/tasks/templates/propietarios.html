@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<div class="main container bg-dark text-white">
+  <br>
+  <div class="table-responsive mx-auto">
+    <h3 class="card card-body text-center bg-dark text-white border-2 border-success">Propietarios Django</h3>
+    <table class="table table-sm table-bordered table-dark border-secondary text-white border border-success border-2"
+      style="font-size: 0.8em">
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Telefono</th>
+        <th>Direccion</th>
+        <th>Correo Electronico</th>
+        <th>Mascotas</th>
+      </tr>
+      {% for propietario in propietarios %}
+      <tr>
+        <td>{{ propietario.ID_propietario }}</td>
+        <td>{{ propietario.Nombre }}</td>
+        <td>{{ propietario.Apellido }}</td>
+        <td>{{ propietario.Telefono }}</td>
+        <td>{{ propietario.Direccion }}</td>
+        <td>{{ propietario.Correo_electronico }}</td>
+        <td>{{ propietario.Mascotas|default:"&#10060;" }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+
+
+
+    <h4 class="card card-body text-center bg-dark text-white col-md-12 mx-auto border border-success border-2">Ingresar
+      Nuevo Propietario</h4>
+    <form method="post" class="card card-body bg-dark text-white col-md-12 mx-auto border border-success border-2">
+      {% csrf_token %}
+      <div class="row">
+        <div class="col">
+          <p class="fw-bold fs-5">Nombre:</p>
+          {{ form.Nombre }}
+        </div>
+        <div class="col">
+          <p class="fw-bold fs-5">Apellido:</p>
+          {{ form.Apellido }}
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col">
+          <p class="fw-bold fs-5">Telefono:</p>
+          {{ form.Telefono }}
+        </div>
+        <div class="col">
+          <p class="fw-bold fs-5">Direccion:</p>
+          {{ form.Direccion }}
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col">
+          <p class="fw-bold fs-5">Correo electronico:</p>
+          {{ form.Correo_electronico }}
+        </div>
+      </div>
+      <br>
+      <button type="submit" class="btn btn-success">Guardar</button>
+    </form>
+
+
+
+
+
+
+
+  </div>
+
+
+
+
+  {% endblock %}

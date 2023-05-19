@@ -1,0 +1,168 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<style>
+  .table-wrapper {
+    position: relative;
+    max-height: 400px;
+    overflow-y: scroll;
+  }
+</style>
+
+<link rel="stylesheet" type="css" href="{% static 'styles.css' %}">
+
+<main class="container py-2 ">
+  
+  <div class="main container bg-dark text-white">
+    
+    <h3 class="card card-body text-center bg-dark text-white border-3 border-warning">Personal</h3>
+    
+    <div class="table-wrapper">
+      
+      <table class="table table-sm table-bordered table-dark border-secondary text-white border border-warning border-3"
+        style="font-size: 0.8em">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Tipo Personal</th>
+            <th>Cedula Profesional</th>
+            <th>Especialidad</th>
+            <th>Nombre Completo</th>
+            <th>Fecha Nacimiento</th>
+            <th>Fecha Ingreso</th>
+            <th>Numero Tel</th>
+            <th>Direccion</th>
+            <th>Turno</th>
+            <th>Horario</th>
+            <th>Salario</th>
+            <th>RFC</th>
+            <th>CURP</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for personal in personals %}
+          <tr>
+            <td>{{ personal.ID_PERSONAL }}</td>
+            <td>{{ personal.TIPO_PERSONAL }}</td>
+            <td>{{ personal.CEDULA_PROFESIONAL|default_if_none:"&#10060;" }}</td>
+            <td>{{ personal.ESPECIALIDAD|default_if_none:"&#10060;" }}</td>
+            <td>{{ personal.NOMBRE_COMPLETO }}</td>
+            <td>{{ personal.FECHA_NACIMIENTO }}</td>
+            <td>{{ personal.FECHA_INGRESO }}</td>
+            <td>{{ personal.NUMERO_TELEFONICO }}</td>
+            <td>{{ personal.DIRECCION }}</td>
+            <td>{{ personal.TURNO }}</td>
+            <td>{{ personal.HORARIO }}</td>
+            <td>{{ personal.SALARIO_NETO }}</td>
+            <td>{{ personal.RFC }}</td>
+            <td>{{ personal.CURP }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <br><br>
+
+
+
+
+    <h5
+      class="fs-3 fw-bold card card-body text-center bg-dark text-white col-md-12 mx-auto border border-warning border-3">
+      Agregar
+      empleado</h5>
+    <form method="post" class="card card-body bg-dark text-white col-md-12 mx-auto border border-warning border-3">
+      {% csrf_token %}
+
+      <div class="row">
+        <div class="col">
+          <p class="fw-bold fs-5">Tipo:</p>
+          {{ form.tipo_personal }}
+        </div>
+        <div class="col">
+          <p class="fw-bold fs-5">*Cedula:</p>
+          {{ form.cedula_profesional }}
+        </div>
+      </div>
+
+      <br>
+
+      <div class="row">
+        <div class="col">
+          <p class="fw-bold fs-5">Nombre Completo:</p>
+          {{ form.nombre_completo }}
+        </div>
+        <div class="col">
+          <p class="fw-bold fs-5">*Especialidad:</p>
+          {{ form.especialidad }}
+        </div>
+      </div>
+
+      <br>
+
+      <div class="row">
+        <div class="col">
+          <p class="fw-bold fs-5">Fecha Nacimiento:</p>
+          {{ form.fecha_nacimiento }}
+        </div>
+        <div class="col">
+          <p class="fw-bold fs-5">Fecha Ingreso:</p>
+          {{ form.fecha_ingreso }}
+        </div>
+      </div>
+
+      <br>
+
+      <div class="row">
+        <div class="col">
+          <p class="fw-bold fs-5">Numero Telefonico:</p>
+          {{ form.numero_telefonico }}
+        </div>
+        <div class="col">
+          <p class="fw-bold fs-5">Direccion:</p>
+          {{ form.direccion }}
+        </div>
+      </div>
+
+      <br>
+
+      <div class="row">
+        <div class="col">
+          <p class="fw-bold fs-5">Turno:</p>
+          {{ form.turno }}
+        </div>
+        <div class="col">
+          <p class="fw-bold fs-5">Horario:</p>
+          {{ form.horario }}
+        </div>
+        <div class="col">
+          <p class="fw-bold fs-5">Salario Neto:</p>
+          {{ form.salario_neto }}
+        </div>
+      </div>
+
+      <br>
+
+      <div class="row">
+        <div class="col">
+          <p class="fw-bold fs-5">RFC:</p>
+          {{ form.rfc }}
+        </div>
+        <div class="col">
+          <p class="fw-bold fs-5">CURP:</p>
+          {{ form.curp }}
+        </div>
+
+      </div>
+      <br>
+
+
+
+
+
+      <button type="submit" class="btn btn-itp">Guardar</button>
+    </form>
+
+  </div>
+</main>
+{% endblock %}

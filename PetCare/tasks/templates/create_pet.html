@@ -1,0 +1,46 @@
+{% extends 'base.html '%}
+{% block content %}
+
+<div class="main container ">
+    <div class="row mt-5 ">
+
+        <div class="col-md-5">
+            <form action="/tasks/create_pet/" method="POST" class="card card-body bg-dark text-white">
+                <h2 class="text-center ">Agregar Mascota</h2>
+                <br>
+                {{error}}
+                {% csrf_token %}
+                {{form}}
+                <br>
+                <button class="btn btn-primary">Guardar</button>
+            </form>
+        </div>
+
+        <div class="col-md-7">
+            <div class="col-md-7">
+                <h2 class="text-center">Mascotas</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Species</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for pet in pets %}
+                        <tr>
+                            <td>{{ pet.name }}</td>
+                            <td>{{ pet.species }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
+
+{% endblock %}

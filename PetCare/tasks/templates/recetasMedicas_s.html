@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="main container bg-dark text-white">
+    <br>
+    <div class="table-responsive mx-auto">
+        <h3 class="card card-body text-center bg-dark text-white border-3 border-warning">Recetas</h3>
+        <table
+            class="table table-sm table-bordered table-dark border-secondary text-white border border-warning border-3"
+            style="font-size: 0.8em">
+            <thead>
+                <tr>
+                    <th>ID Receta</th>
+                    <th>ID Mascota</th>
+                    <th>ID Personal</th>
+                    <th>Peso</th>
+                    <th>Medicamentos Recetados</th>
+                    <th>Indicaciones Generales</th>
+                    <th>Fecha</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in recetasMedicas %}
+                <tr>
+                    <td>{{ item.ID_RECETA }}</td>
+                    <td>{{ item.ID_MASCOTA }} - {{ item.NOMBRE_MASCOTA }} </td>
+                    <td>{{ item.ID_PERSONAL }} - {{ item.NOMBRE_PERSONAL }} </td>
+                    <td>{{ item.PESO }}</td>
+                    <td>{{ item.MEDICAMENTOS_RECETADOS }}</td>
+                    <td>{{ item.INDICACIONES_GENERALES }}</td>
+                    <td>{{ item.FECHA }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table><br>
+    </div>
+
+    <h4 class="card card-body text-center bg-dark text-white col-md-12 mx-auto border border-warning border-3">Agregar
+        Receta Médica</h4>
+    <form method="post" class="card card-body bg-dark text-white col-md-12 mx-auto border border-warning border-3">
+        {% csrf_token %}
+        
+        <div class="row">
+            <div class="col">
+                <p class="fw-bold fs-5">Mascota:</p>
+                {{ form.ID_mascota }}
+                {{ form.ID_mascota.errors }}
+            </div>
+            <div class="col">
+                <p class="fw-bold fs-5">Personal:</p>
+                {{ form.ID_personal }}
+                {{ form.ID_personal.errors }}
+            </div>
+        </div>
+        <br>
+        
+        <div class="row">
+            <div class="col">
+                <p class="fw-bold fs-5">Indicaciones Generales:</p>
+                {{ form.Indicaciones_generales }}
+                {{ form.Indicaciones_generales.errors }}
+            </div>
+            <div class="col">
+                <p class="fw-bold fs-5">Medicamentos Recetados:</p>
+                {{ form.Medicamentos_recetados }}
+                {{ form.Medicamentos_recetados.errors }}
+            </div>
+        </div>
+        <br>
+        
+        <div class="row">
+            <div class="col">
+                <p class="fw-bold fs-5">Peso:</p>
+                {{ form.Peso }}
+                {{ form.Peso.errors }}
+            </div>
+            <div class="col">
+                <p class="fw-bold fs-5">Fecha:</p>
+                {{ form.Fecha }}
+                {{ form.Fecha.errors }}
+            </div>
+        </div>
+        <br>
+        <button type="submit" class="btn btn-itp">Guardar</button>
+    </form>
+
+</div>
+{% endblock %}

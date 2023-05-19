@@ -1,0 +1,56 @@
+{% extends 'base.html '%}
+{% block content %}
+
+<div class="main container bg-dark text-white">
+    <br>
+    
+    <div class="row">
+        <h3 class="card card-body text-center bg-dark text-white border-3 border-warning">Tareas</h3>
+        <div class="col-md-6 card card-body bg-dark text-white border border-warning border-3">
+            <h2 class="text-center">Tareas incompletas</h2>
+            <ul>
+                {% for task in incomplete_tasks %}
+                {% if task.important %}
+                <li class="text-danger"> <a href="{% url 'task_detail' task.id %}">{{ task.title }};</a><a href="{% url 'task_detail' task.id %}"> [{{ task.description }}] </a></li>
+                {% else %}
+                <li class="text-warning"> <a href="{% url 'task_detail' task.id %}"> {{ task.title }}:</a><a href="{% url 'task_detail' task.id %}"> [{{ task.description }}] </a></li>
+                {% endif %}
+                {% empty %}
+                <li>No hay tareas incompletas.</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="col-md-6 card card-body bg-dark text-white border border-warning border-3">
+            <h2 class="text-center">Tareas completadas</h2>
+            <ul>
+                {% for task in completed_tasks %}
+                <li class="text-success"><a href="{% url 'task_detail' task.id %}"> {{ task.title }} - {{ task.description }} ({{ task.datecompleted|date:"F d, Y" }}) </a></li>
+                {% empty %}
+                <li>No hay tareas completadas.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+
+
+    <div class="row mt-5 mx-auto">
+        <div class="col-md-8 mx-auto">
+            <form action="/tasks/create/" method="POST" class="card card-body bg-dark text-white col-md-12 mx-auto border border-warning border-3">
+                <h1 class="text-center">Crear Tarea</h1>
+                {{error}}
+                {% csrf_token %}
+                {{form}}
+                <br>
+                <button class="btn btn-itp"> Guardar </button>
+            </form>
+        </div>
+    </div>
+
+
+
+</div>
+
+
+{% endblock %}

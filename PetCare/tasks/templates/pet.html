@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="main container bg-dark text-white">
+    <br>
+    <div class="table-responsive mx-auto">
+        <h3 class="card card-body text-center bg-dark text-white">Mascotas</h3>
+        <table class="table table-sm table-bordered table-dark border-secondary text-white" style="font-size: 0.8em">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Edad</th>
+                    <th>Sexo</th>
+                    <th>Raza</th>
+                    <th>Color</th>
+                    <th>Propietario</th>
+                    <th>Cel Propietario</th>
+                    <th>Dir Propietario</th>
+                    <th>Historial</th>
+                    <th>Surgeries</th>
+                    <th>Tratamientos</th>
+                    <th>Release Dates</th>
+                    <th>Diagnostico</th>
+                    <th>Vacunacion</th>
+                    <th>Alergias</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for pet in pets %}
+                <tr>
+                    <td>{{ pet.nombre }}</td>
+                    <td>{{ pet.edad }}</td>
+                    <td>{{ pet.sexo }}</td>
+                    <td>{{ pet.raza }}</td>
+                    <td>{{ pet.color }}</td>
+                    <td>{{ pet.nombre_propietario }}</td>
+                    <td>{{ pet.telefono_propietario }}</td>
+                    <td>{{ pet.direccion_propietario }}</td>
+                    <td>{{ pet.historial }}</td>
+                    <td>{{ pet.cirugias }}</td>
+                    <td>{{ pet.tratamientos }}</td>
+                    <td>{{ pet.fechas_egreso }}</td>
+                    <td>{{ pet.diagnostico }}</td>
+                    <td>{{ pet.esquema_vacunas }}</td>
+                    <td>{{ pet.alergias }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="15">No tienes mascotas aún.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <br><br>
+    </div>
+
+    <h4 class="card card-body text-center bg-dark text-white">Agregar Mascota</h4>
+    <form method="post" class="card card-body bg-dark text-white col-md-6 mx-auto">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Agregar Mascota</button>
+    </form>
+
+    {% if error %}
+    <p>{{ error }}</p>
+    {% endif %}
+
+</div>
+{% endblock %}

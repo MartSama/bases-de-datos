@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{% block content %} <!-- ver_expedientes.html -->
+
+<div class="main container bg-dark text-white">
+    <br>
+    <div class="table-responsive mx-auto">
+        <h3 class="card card-body text-center bg-dark text-white border-3 border-warning">Mascotas</h3>
+        <table class="table table-sm table-bordered table-dark text-white border border-warning border-3"
+            style="font-size: 0.8em">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Propietario</th>
+                    <th>Tipo</th>
+                    <th>Raza</th>
+
+                    <th>F Nacimiento</th>
+                    <th>Color</th>
+                    <th>Sexo</th>
+                    <th>Imagen</th>
+                    <!-- Agrega más columnas según sea necesario -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for mascota in mascotas %}
+                <tr>
+                    <td>{{ mascota.ID_MASCOTA }}</td>
+                    <td>{{ mascota.NOMBRE }}</td>
+                    <td>{{ mascota.NOMBRE_PROPIETARIO }} {{ mascota.APELLIDO_PROPIETARIO }} </td>
+                    <td>{{ mascota.TIPO }}</td>
+                    <td>{{ mascota.RAZA }}</td>
+
+
+                    <td>{{ mascota.FECHA_NACIMIENTO }}</td>
+                    <td>{{ mascota.COLOR }}</td>
+                    <td>{{ mascota.SEXO }}</td>
+                    <td>{{ mascota.IMAGEN }}</td>
+                    <!-- Agrega más campos según sea necesario -->
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table><br>
+
+
+        <h4 class="card card-body text-center bg-dark text-white col-md-12 mx-auto border border-warning border-3">
+            Ingresar Nueva Mascota</h4>
+        <form method="post" enctype="multipart/form-data"
+            class="card card-body bg-dark text-white col-md-12 mx-auto border border-warning border-3">
+            {% csrf_token %}
+
+            <div class="row">
+                <div class="col">
+                    <p class="fw-bold fs-5">Propietario:</p>
+                    {{ form.ID_propietario }}
+                    {{ form.ID_propietario.errors }}
+                </div>
+                <div class="col">
+                    <p class="fw-bold fs-5">Nombre:</p>
+                    {{ form.Nombre }}
+                    {{ form.Nombre.errors }}
+                </div>
+            </div>
+            <br>
+
+            <div class="row">
+                <div class="col">
+                    <p class="fw-bold fs-5">Raza:</p>
+                    {{ form.Raza }}
+                    {{ form.Raza.errors }}
+                </div>
+                <div class="col">
+                    <p class="fw-bold fs-5">Tipo:</p>
+                    {{ form.Tipo }}
+                    {{ form.Tipo.errors }}
+                </div>
+
+                <div class="col">
+                    <p class="fw-bold fs-5">Color:</p>
+                    {{ form.Color }}
+                    {{ form.Color.errors }}
+                </div>
+            </div>
+            <br>
+
+            <div class="row">
+                <div class="col">
+                    <p class="fw-bold fs-5">Sexo:</p>
+                    {{ form.Sexo }}
+                    {{ form.Sexo.errors }}
+                </div>
+                <div class="col">
+                    <p class="fw-bold fs-5">Fecha Nacimiento:</p>
+                    {{ form.Fecha_nacimiento }}
+                    {{ form.Fecha_nacimiento.errors }}
+                </div>
+
+                <div class="col">
+                    <p class="fw-bold fs-5">Imagen:</p>
+                    {{ form.Imagen }}
+                    {{ form.Imagen.errors }}
+                </div>
+            </div>
+            <br>
+
+
+            <button type="submit" class="btn btn-itp">Añadir mascota</button>
+        </form>
+
+
+
+    </div>
+</div>
+{% endblock %}

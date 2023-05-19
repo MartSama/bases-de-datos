@@ -1,0 +1,233 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veterinaria León</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'styles.css' %}"> <!-- Otros elementos del head de la plantilla base -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</head>
+
+<body class="bg-dark text-white">
+
+
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/"><img src="https://www.svgrepo.com/show/395985/cat.svg" alt="iconito"
+                    width="20" height="20"> León</a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span> </button>
+
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto small-font">
+                    {% if user.is_authenticated %}
+
+                    <!-- PERSONAL -->
+                    <li class="nav-item dropdown" data-bs-theme="dark">
+                        <a class="nav-link dropdown-toggle " href="#" id="navbarDropdownMenuLink" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-person-vcard-fill" style="font-size: 0.9rem; color: rgb(255, 166, 0);"></i>
+                            Personal
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuButtonDark">
+                            <li><a class="dropdown-item" href="{% url 'personal' %}">Personal Django</a></li>
+                            <li><a class="dropdown-item" href="{% url 'personals_view' %}">Personal SQL</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- PROPIETARIOS -->
+                    <li class="nav-item dropdown" data-bs-theme="dark">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-person-vcard" style="font-size: 0.9rem; color: rgb(255, 166, 0);"></i>
+                            Propietarios
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuButtonDark">
+                            <li><a class="dropdown-item" href="{% url 'propietarios' %}">Propietarios Django</a></li>
+                            <li><a class="dropdown-item" href="{% url 'propietarios_s' %}">Propietarios SQL</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- PROVEEDORES -->
+                    <li class="nav-item dropdown" data-bs-theme="dark">
+                        <a class="nav-link dropdown-toggle " href="#" id="navbarDropdownMenuLink" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-person-video2" style="font-size: 0.9rem; color: rgb(255, 166, 0);"></i>
+                            Proveedores
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuButtonDark">
+                            <li><a class="dropdown-item" href="{% url 'proveedores' %}">Proveedores Django</a></li>
+                            <li><a class="dropdown-item" href="{% url 'proveedores_s' %}">Proveedores SQL</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- INVENTARIO -->
+                    <li class="nav-item dropdown" data-bs-theme="dark">
+                        <a class="nav-link dropdown-toggle " href="#" id="navbarDropdownMenuDark" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-box-seam-fill" style="font-size: 0.9rem; color: rgb(255, 166, 0);"></i>
+                            Inventario
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuButtonDark">
+                            <li><a class="dropdown-item" href="{% url 'inventario' %}">Inventario Django</a></li>
+                            <li><a class="dropdown-item" href="{% url 'inventario_s' %}">Inventario SQL</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="{% url 'proveedores_productos_s' %}">Porductos
+                                    Proveedores</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- MASCOTAS -->
+                    <li class="nav-item dropdown" data-bs-theme="dark">
+                        <a class="nav-link dropdown-toggle " href="#" id="navbarDropdownMenuDark" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-postcard-heart-fill"
+                                style="font-size: 0.9rem; color: rgb(255, 166, 0);"></i>
+                            Mascotas
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuButtonDark">
+                            <li><a class="dropdown-item" href="{% url 'mascotas' %}">Mascotas Django</a></li>
+                            <li><a class="dropdown-item" href="{% url 'mascotas_s' %}">Mascotas SQL</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- EXPEDIENTES -->
+                    <li class="nav-item dropdown" data-bs-theme="dark">
+                        <a class="nav-link dropdown-toggle " href="#" id="navbarDropdownMenuDark" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-card-heading" style="font-size: 0.9rem; color: rgb(255, 166, 0);"></i>
+                            Expedientes
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuButtonDark">
+                            <li><a class="dropdown-item" href="{% url 'expedientes' %}">Expedientes Django</a></li>
+                            <li><a class="dropdown-item" href="{% url 'expedientes_s' %}">Expedientes SQL</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- RECETAS MEDICAS -->
+                    <li class="nav-item dropdown" data-bs-theme="dark">
+                        <a class="nav-link dropdown-toggle " href="#" id="navbarDropdownMenuDark" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-capsule" style="font-size: 0.9rem; color: rgb(255, 166, 0);"></i>
+                            Recetas
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuButtonDark">
+                            <li><a class="dropdown-item" href="{% url 'recetasMedicas' %}">Recetas Django</a></li>
+                            <li><a class="dropdown-item" href="{% url 'recetasMedicas_s' %}">Recetas SQL</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- VENTAS -->
+                    <li class="nav-item dropdown" data-bs-theme="dark">
+                        <a class="nav-link dropdown-toggle " href="#" id="navbarDropdownMenuDark" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-bag-check-fill" style="font-size: 0.9rem; color: rgb(255, 166, 0);"></i>
+                            Ventas
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuButtonDark">
+                            <li><a class="dropdown-item" href="{% url 'ventas' %}">Ventas Django</a></li>
+                            <li><a class="dropdown-item" href="{% url 'ventas_s' %}">Ventas SQL</a></li>
+                        </ul>
+                    </li>
+
+
+                    <!-- NOMINA -->
+                    <li class="nav-item dropdown" data-bs-theme="dark">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-card-list" style="font-size: 0.9rem; color: rgb(255, 166, 0);"></i> Nomina
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuButtonDark">
+                            <li><a class="dropdown-item" href="{% url 'nomina' %}">Nomina Django</a></li>
+                            <li><a class="dropdown-item" href="{% url 'nomina_s' %}">Nomina SQL</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- TAREAS -->
+                    <li class="nav-item"> <a href="{% url 'task_manager' %}" class="nav-link"><i
+                                class="bi bi-journal-text" style="font-size: 0.9rem; color: rgb(255, 166, 0);"></i>
+                            Tareas</a> </li>
+
+
+
+
+                    <li class="nav-item"> <a href="/logout" class="nav-link"><span style="color: red;">&#10060;</span>
+                            <!-- Equís roja --></a> </li>
+
+
+                    {% else %}
+                    <li class="nav-item"> <a href="/signup" class="nav-link">Registro</a> </li>
+                    <li class="nav-item"> <a href="/signin" class="nav-link">Acceder</a> </li>
+                    {% endif %}
+                </ul>
+
+            </div>
+
+
+
+        </div>
+    </nav>
+
+
+
+
+
+
+    {% block content %}
+
+    {% endblock %}
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        window.onload = function () {
+            var tipoPersonal = document.getElementById('id_tipo_personal');
+            var cedulaProfesional = document.getElementById('id_cedula_profesional');
+            var especialidad = document.getElementById('id_especialidad');
+
+            function checkTipoPersonal() {
+                var selectedTipoPersonal = tipoPersonal.options[tipoPersonal.selectedIndex].value;
+                var isMedicoVeterinario = selectedTipoPersonal === 'Medicos veterinarios';
+                cedulaProfesional.disabled = !isMedicoVeterinario;
+                especialidad.disabled = !isMedicoVeterinario;
+            }
+
+            // Verificar la selección inicial
+            checkTipoPersonal();
+
+            // Añadir un listener para cambiar eventos
+            tipoPersonal.addEventListener('change', checkTipoPersonal);
+        }
+    </script>
+   
+
+
+</body>
+
+<br><br>
+
+<footer>
+    <div class="text-center">
+        <a class="btn btn-itp " href="/signin/"> 1 </a>
+        <a class="btn btn-itp1" href="/signup/"> 2 </a>
+        <a class="btn btn-itp2" href="/"> 3 </a>
+        <a class="btn btn-itp3" href="/"> 4 </a>
+        <a class="btn btn-itp4" href="/"> 5 </a>
+        <a class="btn btn-itp5" href="/"> 6 </a>
+    </div> <br><br>
+</footer>
+
+</html>

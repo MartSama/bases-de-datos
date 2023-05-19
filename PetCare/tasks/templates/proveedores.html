@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block content %} <!-- proveedores.html -->
+
+<div class="main container bg-dark text-white">
+    <br>
+    <div class="table-responsive mx-auto">
+        <h3 class="card card-body text-center bg-dark text-white border-3 border-success">Proveedores Django</h3>
+        <table class="table table-sm table-bordered table-dark border-3 text-white border border-success " style="font-size: 0.8em">
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Dirección</th>
+                <th>Teléfono</th>
+                
+            </tr>
+            {% for proveedor in proveedores %}
+            <tr>
+                <td>{{ proveedor.ID_proveedor }}</td>
+                <td>{{ proveedor.nombre }}</td>
+                <td>{{ proveedor.direccion }}</td>
+                <td>{{ proveedor.telefono }}</td>
+                
+            </tr>
+            {% endfor %}
+        </table>
+
+        <h4 class="card card-body text-center bg-dark text-white col-md-12 mx-auto border border-success border-3">Ingresar Nuevo Proveedor</h4>
+        <form method="POST" class="card card-body bg-dark text-white col-md-12 mx-auto border border-success border-3">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col">
+                    <p class="fw-bold fs-5">Nombre:</p>
+                    {{ form.nombre }}
+                    {{ form.nombre.errors }}
+                </div>
+                <div class="col">
+                    <p class="fw-bold fs-5">Direccion:</p>
+                    {{ form.direccion }}
+                </div>
+            </div>
+            <br>
+
+            
+            <div class="row">
+                <div class="col">
+                    <p class="fw-bold fs-5">Telefono:</p>
+                    {{ form.telefono }}
+                    {{ form.telefono.errors }}
+                </div>
+            </div>
+            <br>
+            <br>
+            <button type="submit" class="btn btn-success">Guardar</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

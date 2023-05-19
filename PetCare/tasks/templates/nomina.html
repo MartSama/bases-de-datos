@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="main container bg-dark text-white">
+  <br>
+  <div class="table-responsive mx-auto">
+    <h3 class="card card-body text-center bg-dark text-white border-3 border-success">Nómina Django</h3>
+    <table class="table table-sm table-bordered table-dark border-secondary text-white border border-success border-3"
+      style="font-size: 0.8em">
+      <thead>
+        <tr>
+          <th>ID Nomina</th>
+          <th>ID Personal</th>
+          <th>Fecha Pago</th>
+          <th>Tipo Pago</th>
+          <th>Horas Trabajadas</th>
+          <th>Horas Extras</th>
+          <th>Retardos</th>
+          <th>Faltas</th>
+          <th>Empleado del Mes</th>
+          <th>Salario Neto</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in nomina %}
+        <tr>
+          <td>{{ item.ID_nomina }}</td>
+          <td>{{ item.ID_personal }}</td>
+          <td>{{ item.Fecha_pago }}</td>
+          <td>{{ item.Tipo_pago }}</td>
+          <td>{{ item.Horas_trabajadas }}</td>
+          <td>{{ item.Horas_extras }}</td>
+          <td>{{ item.Retardos }}</td>
+          <td>{{ item.Faltas }}</td>
+          <td>
+            {% if item.Empleado_del_mes %}
+            <span style="color: green;">&#10004;</span> <!-- Palomita verde -->
+            {% else %}
+            <span style="color: red;">&#10060;</span> <!-- Equís roja -->
+            {% endif %}
+          </td>
+          <td>{{ item.Salario_NETO }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <h4 class="card card-body text-center bg-dark text-white col-md-12 mx-auto border border-success border-2">Agregar
+    Registro de Nómina</h4>
+  <form method="post" class="card card-body bg-dark text-white col-md-12 mx-auto border border-success border-2">
+    {% csrf_token %}
+
+
+
+    <div class="row">
+      <div class="col">
+        <p class="fw-bold fs-5">ID Personal:</p>
+        {{ form.ID_personal }}
+      </div>
+      <div class="col">
+        <p class="fw-bold fs-5">Fecha de Pago:</p>
+        {{ form.Fecha_pago }}
+      </div>
+    </div>
+
+    <br>
+    <div class="row">
+      <div class="col">
+        <p class="fw-bold fs-5">Tipo de pago:</p>
+        {{ form.Tipo_pago }}
+      </div>
+      <div class="col">
+        <p class="fw-bold fs-5">Horas Trabajadas:</p>
+        {{ form.Horas_trabajadas }}
+      </div>
+      <div class="col">
+        <p class="fw-bold fs-5">Horas Extras:</p>
+        {{ form.Horas_extras }}
+      </div>
+    </div>
+
+    
+    <br>
+    <div class="row">
+      <div class="col">
+        <p class="fw-bold fs-5">Retardos:</p>
+        {{ form.Retardos }}
+      </div>
+      <div class="col">
+        <p class="fw-bold fs-5">Faltas:</p>
+        {{ form.Faltas }}
+      </div>
+      <div class="col">
+        <p class="fw-bold fs-5">Empleado del mes:</p>
+        {{ form.Empleado_del_mes }}
+      </div>
+    </div>
+    <br>
+
+
+
+
+
+
+
+    <button type="submit" class="btn btn-success">Guardar</button>
+  </form>
+
+</div>
+{% endblock %}

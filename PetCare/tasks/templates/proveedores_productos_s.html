@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="main container bg-dark text-white">
+  <br>
+  <div class="table-responsive mx-auto">
+    <h3 class="card card-body text-center bg-dark text-white border-3 border-warning">Proveedores Productos</h3>
+    <table class="table table-sm table-bordered table-dark border-secondary text-white border border-warning border-3" style="font-size: 0.8em">
+      <thead>
+        <tr>
+          <th>ID Proveedor</th>
+          <th>ID Producto</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in proveedores_productos %}
+        <tr>
+          <td>{{ item.NOMBRE }}</td>
+          <td>{{ item.NOMBRE_PRODUCTO }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div><br>  
+  <h4 class="card card-body text-center bg-dark text-white col-md-12 mx-auto border border-warning border-3">
+  Proveedor Productos</h4>
+<form method="POST" class="card card-body bg-dark text-white col-md-12 mx-auto border border-warning border-3">
+    {% csrf_token %}
+    <div class="row">
+      <div class="col">
+        <p class="fw-bold fs-5">Producto:</p>
+        {{ form_pp.ID_producto }}
+        {{ form_pp.ID_producto.errors }}
+    </div>
+        <div class="col">
+            <p class="fw-bold fs-5">Proveedor:</p>
+            {{ form_pp.ID_proveedor }}
+            {{ form_pp.ID_proveedor.errors }}
+        </div>
+        
+    </div>
+    <br>
+    <br>
+    <button type="submit" name="form2" class="btn btn-itp">Guardar</button>
+</form>
+
+    
+   
+
+</div>
+{% endblock %}

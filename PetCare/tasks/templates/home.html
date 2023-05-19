@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<link rel="stylesheet" type="css" href="{% static 'styles.css' %}"> <!-- Otros elementos del head de la plantilla base -->
+<main class="container py-2 ">
+    
+    <section class="card card-body bg-dark text-white border-2 border-warning ">
+        <h2 class="card card-body text-center bg-dark text-white border-2 border-warning">Veterinaria Leon</h2>
+        
+        <p class="text-center"> Bienvenido! </p>
+        
+
+        <div class="d-flex justify-content-center">
+            <div style="max-width: 500px;">
+                <img src="https://www.infobae.com/new-resizer/fkcDqKuAcUTFe7qrzuu1YxMH8ls=/992x558/filters:format(webp):quality(85)/arc-anglerfish-arc2-prod-infobae.s3.amazonaws.com/public/NVWQSYGX3RC7ZBEHLPLDVXA3PU.jpg"
+                    class="img-fluid rounded border border-warning border-3" alt="Descripción">
+            </div>
+        </div><br>
+
+
+        {% if user.is_authenticated %}
+        <div class="text-center">
+            <a class="btn btn-itp col-md-3" href="{% url 'propietarios_s' %}"> Agregar Propietario  <i class="bi bi-person-circle" style="font-size: 1.1rem; color: rgb(60, 39, 0);"></i> </a>
+            <a class="btn btn-itp1 col-md-3" href="{% url 'mascotas_s' %}"> Agregar Mascota  <i class="bi bi-plus-circle-fill" style="font-size: 1.1rem; color: rgb(60, 39, 0);"></i> </a>
+        </div>
+        {% else %}
+        <div class="text-center">
+            <a class="btn btn-itp col-md-3" href="/signin/"> Entrar   <i class="bi bi-person-fill-check" style="font-size: 1.2rem; color: rgb(57, 39, 5);"></i></a>
+            <a class="btn btn-itp1 col-md-3" href="/signup/"> Registrarse   <i class="bi bi-person-fill-add" style="font-size: 1.2rem; color: rgb(57, 39, 5);"></i></a>
+        </div> <br><br>
+        {% endif %}
+
+        
+
+
+        <br><br>
+        <p class="text-center">
+            Expedientes:
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, veritatis ducimus? Recusandae, mollitia
+            quas voluptates illo aut nemo sunt dolorem eius reprehenderit. Amet dolorem nesciunt nobis temporibus nulla
+            similique cupiditate inventore debitis, ullam nemo mollitia, ipsa molestiae eius possimus aspernatur
+            officiis doloremque! Laboriosam aliquid sed explicabo dolores, sunt, natus cumque deleniti in dolorum
+            consectetur eius reiciendis ex asperiores ratione id quidem, laudantium placeat architecto eveniet molestiae
+            qui itaque error! Voluptatum omnis illo, numquam sunt autem quaerat voluptate, unde aperiam earum error
+            voluptatem magnam repellat? Doloribus expedita vel praesentium asperiores ipsum porro, atque recusandae
+            eligendi explicabo voluptate consequuntur esse ducimus dignissimos.
+        </p>
+        <br>
+
+        
+        <div class="d-flex justify-content-center">
+            <div style="max-width: 500px;">
+                <img src="https://s3.ppllstatics.com/elcomercio/www/multimedia/202302/10/media/ley-bienestar-animal-mascotas.jpg"
+                    class="img-fluid rounded border border-warning border-3" alt="Descripción">
+            </div>
+        </div>
+        <br>
+
+
+<br>
+        {% if user.is_authenticated %}
+        <div class="text-center">
+            <a class="btn btn-itp col-md-3" href="{% url 'expedientes_s' %}"> Expedientes  <i class="bi bi-card-heading" style="font-size: 1.1rem; color: rgb(60, 39, 0);"></i> </a>
+            <a class="btn btn-itp1 col-md-3" href="{% url 'recetasMedicas_s' %}"> Recetas  <i class="bi bi-capsule" style="font-size: 1.1rem; color: rgb(60, 39, 0);"></i> </a>
+        </div>
+        {% else %}
+        {% endif %}
+<br>
+        <br>
+
+
+        
+        
+        
+        
+        
+        
+        <div class="container mt-4">
+            <div class="row">
+              <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100">
+                  <a href="#"><img class="card-img-top border border-warning border-3" src="https://misanimales.com/wp-content/uploads/2021/01/maine-coon-fondo-negro.jpg?auto=webp&quality=45&width=1920&crop=16:9,smart,safe" alt="Image description 1"></a>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100">
+                  <a href="#"><img class="card-img-top border border-warning border-3" src="https://misanimales.com/wp-content/uploads/2023/04/perro-enfermo-inyeccion-veterinario-470x313.jpg?auto=webp&quality=45&width=1920&crop=16:9,smart,safe" alt="Image description 2"></a>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100">
+                  <a href="#"><img class="card-img-top border border-warning border-3" src="https://misanimales.com/wp-content/uploads/2023/04/perro-grande-yeso.jpg?auto=webp&quality=45&width=1920&crop=16:9,smart,safe" alt="Image description 3"></a>
+                </div>
+              </div>
+              <!-- Repeat above div block for more images -->
+            </div>
+          </div>        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <br>
+
+
+
+
+    </section>
+</main>
+{% endblock %}
+
