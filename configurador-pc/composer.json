@@ -1,0 +1,10 @@
+{
+    "name": "casero/configurador-pc",
+    "description": "CRUD de un configurador de PCs con PHP y MongoDB",
+    "type": "project",
+    "require": {
+        "php": ">=8.1",
+        "ext-mongodb": "*",
+        "mongodb/mongodb": "^1.19"
+    }
+}
